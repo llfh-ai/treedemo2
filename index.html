@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui@2.14.1/lib/theme-chalk/index.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+<!-- Element Cascader 级联选择器,https://element.eleme.cn/#/zh-CN/component/cascader --> 
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui@2.14.1/lib/index.js"></script>
+
+
+<div id="app">
+<el-input
+  placeholder="输入关键字进行过滤"
+  v-model="filterText">
+</el-input>
+
+<el-tree
+  class="filter-tree"
+  :data="data"
+  :props="defaultProps"
+  accordion
+  @node-click="handleNodeClick"
+  default-expand-all
+  :filter-node-method="filterNode"
+  ref="tree">
+</el-tree>
+</div>
+
+    <script>
+var Main = {
+    watch: {
+      filterText(val) {
+        this.$refs.tree.filter(val);
+      }
+    },
+
+    methods: {
+      filterNode(value, data) {
+        if (!value) return true;
+        return data.label.indexOf(value) !== -1;
+      }
+    },
+
+    data() {
+      return {
+        filterText: '',
+        data: [
+        {id:1,label: '医学教育教学处'},
+        {id:2,label: '医学学科与研究生处'},
+        {id:3,label: '医学师资处'},
+        {id:4,label: '医学财务预算处'},
+        {id:5,label: '医学综合事务处'},
+        {id:6,label: '基础医学院'},
+        {id:7,label: '第一临床医学院'},
+        {id:8,label: '第二临床医学院',children: [	{id:16,label:'综合办公室'},{id:17,label:'质控科'},{id:18,label:'教务科'},{id:19,label:'学生科'},{id:20,label:'内科学教研室',children: [{id:38,label:'心血管病学教研室'},{id:39,label:'血液病学教研室'},{id:40,label:'呼吸系病学教研室'},{id:41,label:'消化系病学教研室'},{id:42,label:'内分泌与代谢病学教研室'},{id:43,label:'肾病学教研室'},{id:44,label:'风湿病学教研室'},{id:45,label:'传染病学教研室'}]},{id:21,label:'儿科学教研室'},{id:22,label:'老年医学教研室'},{id:23,label:'神经病学教研室'},{id:24,label:'精神病与精神卫生学教研室'},{id:25,label:'皮肤病与性病学教研室'},{id:26,label:'影像医学与核医学教研室'},{id:27,label:'临床检验诊断学教研室'},{id:28,label:'护理学教研室'},{id:29,label:'外科学教研室',children: [	{id:46,label:'普外科学教研室'},{id:47,label:'骨外科学教研室'},{id:48,label:'泌尿外科学教研室'},{id:49,label:'胸心外科学教研室'},{id:50,label:'神经外科学教研室'},{id:51,label:'整形外科学教研室'},{id:52,label:'烧伤外科学教研室'},{id:53,label:'野战外科学教研室'}]},{id:30,label:'妇产科学教研室'},{id:31,label:'眼科学教研室'},{id:32,label:'耳鼻咽喉科学教研室'},{id:33,label:'肿瘤学教研室'},{id:34,label:'康复医学与理疗学教研室'},{id:35,label:'运动医学教研室'},{id:36,label:'麻醉学教研室'},{id:37,label:'急诊医学教研室'}]},
+        {id:9,label: '口腔医学院'},
+        {id:10,label: '公共卫生学院'},
+        {id:11,label: '药学院'},
+        {id:12,label: '护理学院'},
+        {id:13,label: '第一医院'},
+        {id:14,label: '第二医院'},
+        {id:15,label: '口腔医院'}
+        ],
+        defaultProps: {
+          children: 'children',
+          label: 'label'
+        }
+      };
+    }
+  };
+var Ctor = Vue.extend(Main)
+new Ctor().$mount('#app')
+    </script>
+</body> 
+</html>
