@@ -31,7 +31,7 @@
   :props="defaultProps"
   accordion
   @node-click="handleNodeClick"
-  default-expand-all
+  :default-expand-all="false"
   :filter-node-method="filterNode"
   ref="tree">
 </el-tree>
@@ -56,21 +56,9 @@ var Main = {
       return {
         filterText: '',
         data: [
-        {id:1,label: '医学教育教学处'},
-        {id:2,label: '医学学科与研究生处'},
-        {id:3,label: '医学师资处'},
-        {id:4,label: '医学财务预算处'},
-        {id:5,label: '医学综合事务处'},
-        {id:6,label: '基础医学院'},
-        {id:7,label: '第一临床医学院'},
-        {id:8,label: '第二临床医学院',children: [	{id:16,label:'综合办公室'},{id:17,label:'质控科'},{id:18,label:'教务科'},{id:19,label:'学生科'},{id:20,label:'内科学教研室',children: [{id:38,label:'心血管病学教研室'},{id:39,label:'血液病学教研室'},{id:40,label:'呼吸系病学教研室'},{id:41,label:'消化系病学教研室'},{id:42,label:'内分泌与代谢病学教研室'},{id:43,label:'肾病学教研室'},{id:44,label:'风湿病学教研室'},{id:45,label:'传染病学教研室'}]},{id:21,label:'儿科学教研室'},{id:22,label:'老年医学教研室'},{id:23,label:'神经病学教研室'},{id:24,label:'精神病与精神卫生学教研室'},{id:25,label:'皮肤病与性病学教研室'},{id:26,label:'影像医学与核医学教研室'},{id:27,label:'临床检验诊断学教研室'},{id:28,label:'护理学教研室'},{id:29,label:'外科学教研室',children: [	{id:46,label:'普外科学教研室'},{id:47,label:'骨外科学教研室'},{id:48,label:'泌尿外科学教研室'},{id:49,label:'胸心外科学教研室'},{id:50,label:'神经外科学教研室'},{id:51,label:'整形外科学教研室'},{id:52,label:'烧伤外科学教研室'},{id:53,label:'野战外科学教研室'}]},{id:30,label:'妇产科学教研室'},{id:31,label:'眼科学教研室'},{id:32,label:'耳鼻咽喉科学教研室'},{id:33,label:'肿瘤学教研室'},{id:34,label:'康复医学与理疗学教研室'},{id:35,label:'运动医学教研室'},{id:36,label:'麻醉学教研室'},{id:37,label:'急诊医学教研室'}]},
-        {id:9,label: '口腔医学院'},
-        {id:10,label: '公共卫生学院'},
-        {id:11,label: '药学院'},
-        {id:12,label: '护理学院'},
-        {id:13,label: '第一医院'},
-        {id:14,label: '第二医院'},
-        {id:15,label: '口腔医院'}
+        {id:01,label: '内设机构',children:[{id:0101,label: '医学教育教学处'},{id:0102,label: '医学学科与研究生处'},{id:0103,label: '医学师资处'},{id:0104,label: '医学财务预算处'},{id:0105,label: '医学综合事务处'}]},
+        {id:02,label: '学院',children: [{id:0201,label: '基础医学院'},{id:0202,label: '第一临床医学院'},{id:0203,label: '第二临床医学院',children:[{id:02031,label: '行政科室',children:[{id:020301,label: '综合办公室'},{id:020302,label: '质控科'},{id:020303,label: '教务科'},{id:020304,label: '学生科'}]},{id:02032,label: '教研室',children:[{id:020305,label: '内科学教研室' , children:[{id:02030501,label: '心血管病学教研室'},{id:02030502,label: '血液病学教研室'},{id:02030503,label: '呼吸系病学教研室'},{id:02030504,label: '消化系病学教研室'},{id:02030505,label: '内分泌与代谢病学教研室'},{id:02030506,label: '肾病学教研室'},{id:02030507,label: '风湿病学教研室'},{id:02030508,label: '传染病学教研室'}]},{id:020306,label: '儿科学教研室'},{id:020307,label: '老年医学教研室'},{id:020308,label: '神经病学教研室'},{id:020309,label: '精神病与精神卫生学教研室'},{id:020310,label: '皮肤病与性病学教研室'},{id:020311,label: '影像医学与核医学教研室'},{id:020312,label: '临床检验诊断学教研室'},{id:020313,label: '护理学教研室'},{id:020314,label: '外科学教研室' , children:[{id:02031401,label: '普外科学教研室'},{id:02031402,label: '骨外科学教研室'},{id:02031403,label: '泌尿外科学教研室'},{id:02031404,label: '胸心外科学教研室'},{id:02031405,label: '神经外科学教研室'},{id:02031406,label: '整形外科学教研室'},{id:02031407,label: '烧伤外科学教研室'},{id:02031408,label: '野战外科学教研室'}]},{id:020315,label: '妇产科学教研室'},{id:020316,label: '眼科学教研室'},{id:020317,label: '耳鼻咽喉科学教研室'},{id:020318,label: '肿瘤学教研室'},{id:020319,label: '康复医学与理疗学教研室'},{id:020320,label: '运动医学教研室'},{id:020321,label: '麻醉学教研室'},{id:020322,label: '急诊医学教研室'}]}]},{id:0204,label: '口腔医学院'},{id:0205,label: '公共卫生学院'},{id:0206,label: '药学院'},{id:0207,label: '护理学院'}]},
+        {id:03,label: '附属医院',children: [{id:0301,label: '第一医院'},{id:0302,label: '第二医院'},{id:0303,label: '口腔医院'}]}
         ],
         defaultProps: {
           children: 'children',
